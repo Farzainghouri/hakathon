@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import emailjs from "emailjs-com";
 import { initializeApp } from "firebase/app"; 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"; 
+import { useNavigate } from "react-router-dom";
+
 
 // Initialize Firebase (replace with your Firebase config)
 const firebaseConfig = {
@@ -19,6 +21,9 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app); // Get the authentication instance
 
 export default function Form() {
+
+    const Navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -50,19 +55,19 @@ export default function Form() {
     e.preventDefault();
     setLoading(true);
 
-    // Firebase Authentication: Sign up with email and password
-    createUserWithEmailAndPassword(auth, formData.email, password) // Sign up using email and the generated password
+
+    createUserWithEmailAndPassword(auth, formData.email, password) 
       .then((userCredential) => {
         const user = userCredential.user;
         console.log("User signed up successfully:", user);
 
-        // Send email using EmailJS
+       
         emailjs
           .send(
-            "service_a9ux9eg", // Replace with your service ID
-            "template_60elaj9", // Replace with your template ID
-            { ...formData, password }, // Send form data along with the generated password
-            "Qisr1QFqKu6kGqHui" // Replace with your EmailJS user ID
+            "service_a9ux9eg", 
+            "template_60elaj9", 
+            { ...formData, password }, 
+            "Qisr1QFqKu6kGqHui"
           )
           .then(
             (result) => {
@@ -72,6 +77,7 @@ export default function Form() {
               // Reset form and password
               setFormData({ name: "", email: "", nic: "" });
               setPassword("");
+              Navigate("/login")
             },
             (error) => {
               console.error("Error sending email:", error.text);
@@ -79,10 +85,10 @@ export default function Form() {
             }
           )
           .finally(() => {
-            setLoading(false); // Hide loader
+            setLoading(false); 
           });
 
-        // Save form data to localStorage
+        
         localStorage.setItem("formData", JSON.stringify(formData));
       })
       .catch((error) => {

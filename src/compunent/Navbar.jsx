@@ -13,7 +13,9 @@ function Navbar() {
           </span>
         </a>
 
+
         {/* Mobile Menu Button */}
+        <div>
         <button
           onClick={() => setIsOpen(!isOpen)}
           type="button"
@@ -38,6 +40,12 @@ function Navbar() {
           </svg>
         </button>
 
+        <button className="bg-blue-200 p-2 rounded cursor-pointer hover:bg-blue-600">
+            login  
+        </button>
+        </div >
+
+
         {/* Links */}
         <div
           className={`${
@@ -60,6 +68,14 @@ function Navbar() {
                 className="block py-2 px-3 text-gray-700 hover:bg-gray-100 rounded md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
               >
                 About
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="block py-2 px-3 text-gray-700 hover:bg-gray-100 rounded md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+              >
+                profile
               </a>
             </li>
           </ul>

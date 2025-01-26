@@ -30,8 +30,8 @@ const App = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "amount" && value > 500000) {
-      alert("Maximum loan amount is 5 Lakh (500,000).");
+    if (name === "amount" && value > 1000000) {
+      alert("Maximum loan amount is 10 Lakh (10,00,000).");
       return;
     }
     setFormData({ ...formData, [name]: value });
@@ -85,10 +85,9 @@ const App = () => {
             required
           >
             <option value="">Select Purpose</option>
-            <option value="valima">Valima</option>
-            <option value="furniture">Furniture</option>
-            <option value="valima_food">Valima Food</option>
-            <option value="jahez">Jahez</option>
+            <option value="valima">Structure</option>
+            <option value="furniture">Finishing</option>
+            <option value="valima_food">Loan Food</option>
           </select>
         </div>
 
@@ -104,7 +103,7 @@ const App = () => {
             value={formData.amount}
             onChange={handleChange}
             className="w-full mt-2 p-2 border border-gray-300 rounded-lg"
-            placeholder="Enter amount (Max: 5 Lakh)"
+            placeholder="Enter amount (Max: 10 Lakh)"
             required
           />
         </div>
